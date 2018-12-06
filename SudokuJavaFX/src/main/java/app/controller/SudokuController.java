@@ -1,5 +1,5 @@
 package app.controller;
-
+import pkgGame.Cell;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ import pkgEnum.ePuzzleViolation;
 import pkgGame.Cell;
 import pkgGame.Sudoku;
 import pkgHelper.PuzzleViolation;
-
+import javax.swing.*;
 public class SudokuController implements Initializable {
 
 	private Game game;
@@ -65,6 +65,7 @@ public class SudokuController implements Initializable {
 
 	private eGameDifficulty eGD = null;
 	private Sudoku s = null;
+	private Sudoko sTest = null;
 
 	public void setMainApp(Game game) {
 		this.game = game;
@@ -87,7 +88,31 @@ public class SudokuController implements Initializable {
 		CreateSudokuInstance();
 		BuildGrids();
 	}
+	JOptionPane.showMessageDialog(null, "Instructions:\n"
+				+ "\tDrag numbers into the puzzle to set them.\n"
+				+ "\tDouble click to delete numbers from the puzzle.");
+	}
 
+	@FXML
+	private void btnEndGame(ActionEvent event) {
+		System.exit(0);
+	}
+
+	@FXML
+	private void btnCheckGame(ActionEvent event) {
+		if (s.isSudoku())
+			JOptionPane.showMessageDialog(null, "You win!");
+		else
+			JOptionPane.showMessageDialog(null, "You did not win yet.");
+
+		//s.PrintPuzzle();
+	}
+	
+	@FXML
+	private void btnInstructions(ActionEvent event) {
+		JOptionPane.showMessageDialog(null, "Instructions:\n"
+				+ "\tDrag numbers into the puzzle to set them.\n"
+				+ "\tDouble click to delete numbers from the puzzle.");
 	/**
 	 * CreateSudokuInstance - Create an instance of Sudoku, set the attribute in the 'Game' class
 	 * 

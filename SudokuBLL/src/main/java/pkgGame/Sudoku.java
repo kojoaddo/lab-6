@@ -49,6 +49,8 @@ public class Sudoku extends LatinSquare implements Serializable {
 	private HashMap<Integer, SudokuCell> cells = new HashMap<Integer, SudokuCell>();
 
 	private eGameDifficulty eGameDifficulty;
+	
+	private int iMistakes;
 
 	/**
 	 * Sudoku - No-arg private constructor should set the eGameDifficulty to EASY by
@@ -60,6 +62,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 	private Sudoku() {
 		super();
 		this.eGameDifficulty = eGameDifficulty.EASY;
+		this.iMistakes = 0;
 	}
 
 	/**
@@ -94,6 +97,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		SetCells();
 		fillRemaining(this.cells.get(Objects.hash(0, iSqrtSize)));
 		RemoveCells();
+		this.iMistakes = 0;
 
 	}
 
@@ -111,6 +115,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		this(iSize);
 		this.eGameDifficulty = eGD;
 		RemoveCells();
+		this.iMistakes = 0;
 	}
 
 	/**
@@ -132,7 +137,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		} else {
 			throw new Exception("Invalid size");
 		}
-
+		this.iMistakes = 0;
 	}
 
 	public int getiSqrtSize() {
@@ -953,5 +958,25 @@ public class Sudoku extends LatinSquare implements Serializable {
 
 		}
 
+	}
+	public int getiMistakes() {
+		return this.iMistakes;
+	}
+	public int getMaxMistakes() {
+		return this.eGameDifficulty.getMaxMistakes();
+	}
+	public void AddMistakes(int x) {
+		this.iMistakes += x:
+	}
+	public int getZeroes() {
+		int zeroes = 0;
+		for(int i = 0; i < getPuzzle().length; i++) {
+			for(int j = 0; j < getPuzzle().length; j++) {
+				if(getPuzzle()[i][j]== 0) {
+					zeroes++;
+				}
+			}
+		}
+		return zeroes
 	}
 }
