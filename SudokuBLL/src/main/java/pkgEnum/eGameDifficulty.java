@@ -6,7 +6,7 @@ import java.util.Map;
 
 public enum eGameDifficulty {
 
-	EASY(100), MEDIUM(500), HARD(1000);
+	EASY(100, 5), MEDIUM(500, 4), HARD(1000, 3);
 
 	private final int iDifficulty;
 	
